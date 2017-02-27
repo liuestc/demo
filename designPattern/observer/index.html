@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+	<div id="msg_num">0</div>
+		<ul id='msg'>
+			
+		</ul>
+
+
+		<div>
+		<input type="text" id='user_input'>
+			<button id='user_submit' type="button">提交</button>
+		</div>
+	</div>
+</body>
+<script src='observer.js'></script>
+<script>
+	function $(id){
+		return document.getElementById(id);
+	}
+	(function(){
+		function AddMsgItem(e){
+			var text=e.args.text,
+			ul=$("msg"),
+			li=document.createElement('li'),
+			span=document.createElement("span");
+			li.innerHTML=text;
+			span.onclick=function(){
+				alert(2)
+				ul.removeChild(li);
+				Observer.fire("removeCommentMessage",{
+					num:-1
+				})
+			}
+			span.innerHTML="X删除";
+			li.appendChild(span);
+			ul.appendChild(li)
+		}
+
+
+		Observer.regist("addCommentMessage",AddMsgItem)
+	})();
+
+	(function(){
+		function changeMsgNum(e){
+			// alert(11)
+			var num =e.args.num;
+
+			console.log(num)
+			$('msg_num').innerHTML=parseInt($("msg_num").innerHTML)+num;
+
+			
+		}
+		Observer.regist("addCommentMessage",changeMsgNum)
+		Observer.regist("removeCommentMessage",changeMsgNum)
+	})();
+
+	(function(){
+		$("user_submit").onclick=function(){
+			var text=$("user_input");
+			if(text.value===""){
+				return ;
+			}
+			else{
+				Observer.fire("addCommentMessage",{
+					text:text.value,
+					num:1
+				})
+				text.value=""
+			}
+		}
+	})()
+</script>
+</html>
