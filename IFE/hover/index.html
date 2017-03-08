@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  width: 400px;
+  height: 300px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.text-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%,0);
+  z-index: 2;
+  font-size:30px;
+  background-image: -webkit-linear-gradient(left, blue, red 25%, blue 50%, red 75%, blue 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight:800;
+  transition: all 1s ease-in-out ;
+}
+.text-wrapper:hover{
+	animation: streamer 5s infinite linear;
+}
+
+@keyframes streamer {
+    0%  {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+.line {
+  width:100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+  transition: all ease .5s;
+  font-size: 12px;
+}
+
+.line::before{
+	content:" ";
+	width:2px;
+	height:0%;
+	position: absolute;
+	background-color: #fff;
+	transition: all ease .5s;
+	z-index: 99;
+	top:50%;
+	bottom:50%;
+}
+
+.text-wrapper:hover .line::before{
+	top:0;
+	bottom:0;
+	height:100%;
+}
+
+
+.line2::after{
+	content:" ";
+	width:2px;
+	height:0%;
+	position: absolute;
+	background-color: #fff;
+	transition: all ease .5s;
+	z-index: 99;
+	top:50%;
+	bottom:50%;
+	right:0;
+}
+
+.text-wrapper:hover .line2::after{
+	top:0;
+	bottom:0;
+	height:100%;
+}
+
+.image-wrapper {
+  border: 1px solid #ccc;
+  position: absolute;
+  text-align: center;
+  background-image: url(2222.jpg);
+  background-size: 100% 100%;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: .6;
+}
+
+.word{
+	padding:10px;	
+}
+
+.word::before{
+	content:"";
+	position: absolute;
+	top:0;
+	width:0px;
+	height:2px;
+	left:50%;
+	background-color: #fff;
+	transition: all ease .5s;
+}
+
+.word::after{
+	content:"";
+	position: absolute;
+	bottom:0;
+	width:0px;
+	height:2px;
+	left:50%;
+	background-color: #fff;
+	transition: all ease .5s;
+}
+
+.text-wrapper:hover .word::before{
+	left:0;
+	width:100%;
+}
+
+
+.text-wrapper:hover .word::after{
+	left:0;
+	width:100%;
+}
+
+</style>
+
+<body>
+  <div class="wrapper">
+    <div class='text-wrapper'>
+	 <div class="line"></div>
+	  <div class="word">百度前段IFE</div>
+	  <div class="line2"></div>
+    </div>
+    <div class="image-wrapper"></div>
+  </div>
+</body>
+
+</html>
