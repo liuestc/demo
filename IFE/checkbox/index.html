@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>checkbox</title>
+</head>
+<style>
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.content{
+	margin:40px;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  outline: none;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  transition: all ease .5s;
+}
+
+input[type="radio"]:checked {
+  border: 2px solid red;
+}
+
+input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 50%;
+  left: 50%;
+  background-color: red;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/*input[type="radio"]::before	*/
+
+input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: all ease .5s;
+}
+
+input[type='checkbox']:checked {
+  border: 4px solid red;
+}
+
+input[type='checkbox']:after {
+  font-size: 14px;
+  font-weight: 800;
+  vertical-align: middle;
+  margin: -2px -1px 0 -1px;
+  /*line-height: 20px;*/
+  content: " ";
+  background-color: #fff;
+  border: 2px solid #ccc;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  visibility: visible;
+  text-align: center;
+}
+
+input[type=checkbox]:checked:after {
+  content: "\2714";
+  color: #000;
+  color: red;
+  border: 2px solid red;
+}
+</style>
+
+<body>
+  <div class="content">
+    <label for="">
+      <input type="radio" name='test' />
+      <input type="radio" name='test' />
+    </label>
+    <label for="">
+      <input type="checkbox">
+      <input type="checkbox">
+    </label>
+  </div>
+</body>
+
+</html>
